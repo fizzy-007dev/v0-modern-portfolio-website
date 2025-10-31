@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette for light tech-inspired theme */
+  /* Light theme - deprecated */
   --background: oklch(0.98 0.002 240);
   --foreground: oklch(0.18 0.02 240);
   --card: oklch(1 0 0);
@@ -40,39 +40,42 @@
   --sidebar-ring: oklch(0.4 0.15 240);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+/* Dark theme as default with neon accents */
+.dark,
+:root {
+  --background: #0a0e27;
+  --foreground: #e5e7eb;
+  --card: #111827;
+  --card-foreground: #e5e7eb;
+  --popover: #111827;
+  --popover-foreground: #e5e7eb;
+  --primary: #00d9ff;
+  --primary-foreground: #0a0e27;
+  --secondary: #1f2937;
+  --secondary-foreground: #e5e7eb;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #ff006e;
+  --accent-foreground: #0a0e27;
+  --destructive: #ef4444;
+  --destructive-foreground: #fecaca;
+  --border: #1f2937;
+  --input: #1f2937;
+  --ring: #00d9ff;
+  --chart-1: #00d9ff;
+  --chart-2: #ff006e;
+  --chart-3: #fbbf24;
+  --chart-4: #10b981;
+  --chart-5: #8b5cf6;
+  --radius: 0.625rem;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #00d9ff;
+  --sidebar-primary-foreground: #0a0e27;
+  --sidebar-accent: #ff006e;
+  --sidebar-accent-foreground: #e5e7eb;
+  --sidebar-border: #1f2937;
+  --sidebar-ring: #00d9ff;
 }
 
 @theme inline {
@@ -126,9 +129,10 @@
 }
 
 @layer utilities {
+  /* Dark theme gradient mesh */
   .gradient-mesh {
-    background: linear-gradient(135deg, rgba(64, 150, 255, 0.15) 0%, transparent 50%),
-      linear-gradient(-135deg, rgba(100, 180, 255, 0.1) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+      linear-gradient(-135deg, rgba(255, 0, 110, 0.08) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -153,5 +157,56 @@
 
   .glow-effect {
     @apply shadow-lg shadow-primary/20 transition-shadow duration-300;
+  }
+
+  /* Neon edge light effects for buttons */
+  .neon-edge {
+    position: relative;
+    background: linear-gradient(135deg, #0a0e27 0%, #111827 50%, #0a0e27 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .neon-edge::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #00d9ff, #ff006e, #00d9ff);
+    border-radius: inherit;
+    z-index: -1;
+    animation: shimmer 3s infinite;
+  }
+
+  .neon-edge-glow {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), 0 0 40px rgba(255, 0, 110, 0.1);
+  }
+
+  .neon-edge-glow:hover {
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.5), 0 0 60px rgba(255, 0, 110, 0.2);
+  }
+
+  @keyframes shimmer {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Added floating animation for particles */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.8;
+    }
   }
 }

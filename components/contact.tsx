@@ -27,18 +27,18 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-800 to-slate-900 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-20 left-0 w-80 h-80 bg-gradient-to-tr from-accent/20 to-transparent rounded-full blur-3xl -z-10" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-20 left-0 w-80 h-80 bg-gradient-to-tr from-pink-500/10 to-transparent rounded-full blur-3xl -z-10" />
 
       <div className="max-w-4xl mx-auto">
         <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
             Let's Connect!
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mb-4" />
-          <p className="text-lg text-foreground/70">
+          <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full mx-auto mb-4" />
+          <p className="text-lg text-slate-300">
             I'm always interested in hearing about new opportunities and projects.
           </p>
         </div>
@@ -46,8 +46,8 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Get In Touch</h3>
-              <p className="text-foreground/70 leading-relaxed">
+              <h3 className="text-xl font-bold text-cyan-400 mb-4">Get In Touch</h3>
+              <p className="text-slate-300 leading-relaxed">
                 Whether you have an interesting project, want to collaborate, or just want to say hi, feel free to reach
                 out!
               </p>
@@ -67,22 +67,28 @@ const Contact = () => {
                   link: "https://github.com/fizzy-007dev/",
                   text: "View my repositories",
                 },
+                {
+                icon:"M2 4a2 2 0 012-2h16a2 2 0 012 2v0l-10 7L2 4zm0 2.5l9.445 6.612a1 1 0 001.11 0L22 6.5V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6.5z",
+                label: "Email",
+                link: "mailto:fizzywayne2025@gmail.com",
+                text: "Send me an email",
+                },
               ].map((item, idx) => (
                 <a
                   key={idx}
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-lg hover:bg-blue-50 transition-all hover:translate-x-1 group/contact"
+                  className="flex items-center gap-4 p-4 rounded-lg hover:bg-slate-700/50 transition-all hover:translate-x-1 group/contact border border-slate-700/50 hover:border-cyan-500/30"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center group-hover/contact:from-primary/30 group-hover/contact:to-accent/30 transition-all shadow-md">
-                    <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center group-hover/contact:bg-cyan-500/20 transition-all shadow-md group-hover/contact:shadow-cyan-500/20">
+                    <svg className="w-6 h-6 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
                       <path d={item.icon} />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-foreground/50">{item.label}</p>
-                    <p className="font-semibold text-primary hover:text-accent transition-colors">{item.text}</p>
+                    <p className="text-sm text-slate-400">{item.label}</p>
+                    <p className="font-semibold text-cyan-400 hover:text-pink-500 transition-colors">{item.text}</p>
                   </div>
                 </a>
               ))}
@@ -91,10 +97,10 @@ const Contact = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="space-y-6 bg-gradient-to-br from-white to-blue-50/50 p-8 rounded-xl border border-border shadow-xl hover:shadow-2xl transition-shadow"
+            className="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-cyan-500/30 hover:border-cyan-400/60 shadow-xl hover:shadow-cyan-500/20 transition-all"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="name" className="block text-sm font-semibold text-cyan-400 mb-2">
                 Name
               </label>
               <input
@@ -104,13 +110,13 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-border bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700/50 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-cyan-400 mb-2">
                 Email
               </label>
               <input
@@ -120,13 +126,13 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-border bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700/50 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all"
                 placeholder="your@email.com"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="message" className="block text-sm font-semibold text-cyan-400 mb-2">
                 Message
               </label>
               <textarea
@@ -136,18 +142,19 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
+                className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700/50 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all resize-none"
                 placeholder="Your message..."
               />
             </div>
 
             <button
               type="submit"
-              className={`w-full px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/40 transition-all hover:translate-y-[-2px] ${
-                submitted ? "ring-2 ring-green-500" : ""
+              className={`w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:translate-y-[-2px] relative overflow-hidden group/btn ${
+                submitted ? "ring-2 ring-green-400" : ""
               }`}
             >
-              {submitted ? "✓ Message Sent!" : "Send Message"}
+              <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+              <span className="relative">{submitted ? "✓ Message Sent!" : "Send Message"}</span>
             </button>
           </form>
         </div>
