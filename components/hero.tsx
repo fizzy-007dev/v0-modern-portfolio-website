@@ -25,12 +25,12 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 gradient-mesh" />
         <div
-          className="absolute w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-40 -top-40 -right-40 transition-all duration-300"
+          className="absolute w-96 h-96 bg-primary/20 rounded-full opacity-50 -top-40 -right-40 transition-all duration-300 blur-3xl"
           style={{
             transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
           }}
         />
-        <div className="absolute w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-40 bottom-0 -left-40" />
+        <div className="absolute w-96 h-96 bg-accent/20 rounded-full opacity-50 bottom-0 -left-40 blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto">
@@ -109,60 +109,57 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Your Space Section */}
           <div
             className={`transition-all duration-1000 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
             <div className="relative group w-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/40 via-cyan-500/20 to-purple-600/40 rounded-3xl blur-3xl opacity-40 group-hover:opacity-90 transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/50 via-blue-600/30 to-pink-500/40 rounded-3xl opacity-30 group-hover:opacity-80 transition-all duration-300 blur-xl" />
 
-              {/* Main canvas area - now wider rectangle */}
-              <div className="relative rounded-3xl overflow-hidden border-4 border-primary/60 group-hover:border-primary/90 shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300 h-96 backdrop-blur-sm bg-gradient-to-b from-blue-950/60 via-cyan-900/40 to-purple-950/60 flex items-center justify-center">
-                {/* Animated 3D-inspired geometric shape */}
-                <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                  {/* Outer torus-like shape with gradient */}
-                  <div
-                    className="absolute w-80 h-48 rounded-full border-8 border-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 opacity-30 blur-xl animate-spin"
-                    style={{ animationDuration: "8s" }}
-                  />
-                  <div
-                    className="absolute w-64 h-40 rounded-full border-8 border-transparent bg-gradient-to-r from-pink-500 via-red-500 to-orange-400 opacity-20 blur-lg animate-spin"
-                    style={{ animationDuration: "6s", animationDirection: "reverse" }}
-                  />
-
-                  {/* Inner glowing orb */}
-                  <div className="absolute w-48 h-24 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 opacity-40 blur-2xl" />
-                  <div className="absolute w-32 h-16 rounded-full bg-gradient-to-br from-primary to-accent opacity-60 blur-xl" />
-                </div>
-
-                {/* Animated particles */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {[...Array(15)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 bg-primary/60 rounded-full animate-pulse"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-                        animationDelay: `${Math.random() * 2}s`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Animated corner accents */}
-                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-primary/50 rounded-tl-lg" />
-                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-accent/50 rounded-tr-lg" />
-                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-accent/50 rounded-bl-lg" />
-                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-lg" />
-
-                {/* Center text */}
-                <div className="text-center relative z-10">
-                  <div className="text-white text-4xl sm:text-5xl font-bold mb-2 tracking-wide">
-                    {/* Placeholder for center text */}
-                  </div>
-                </div>
+              {/* Outer rotating shapes - CHANGE: smoother continuous rotation with longer durations */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-70">
+                <div
+                  className="w-64 h-64 border-2 border-primary/60 rounded-full blur-sm"
+                  style={{ animation: "spin 20s linear infinite" }}
+                />
+                <div
+                  className="absolute w-80 h-80 border-2 border-accent/50 rounded-full blur-sm"
+                  style={{ animation: "spin 25s linear infinite reverse" }}
+                />
               </div>
+
+              {/* Inner animated gradient sphere - CHANGE: continuous smooth floating with glow */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-70">
+                <div
+                  className="w-48 h-48 bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 rounded-full blur-xl shadow-2xl"
+                  style={{
+                    animation: "float-smooth 6s ease-in-out infinite",
+                    boxShadow: "0 0 60px rgba(0, 217, 255, 0.5), 0 0 40px rgba(255, 0, 110, 0.3)",
+                  }}
+                />
+              </div>
+
+              {/* Floating particles - CHANGE: smoother orbital motion */}
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 rounded-full blur-sm"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${i * 0.25}s`,
+                    backgroundColor: i % 3 === 0 ? "#00d9ff" : i % 3 === 1 ? "#ff006e" : "#0099ff",
+                    boxShadow: i % 3 === 0 ? "0 0 15px #00d9ff" : i % 3 === 1 ? "0 0 15px #ff006e" : "0 0 15px #0099ff",
+                    animation: "orbit-smooth 8s ease-in-out infinite",
+                  }}
+                />
+              ))}
+
+              {/* Animated corner accents */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-primary/70 rounded-tl-lg pointer-events-none" />
+              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-accent/70 rounded-tr-lg pointer-events-none" />
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-accent/70 rounded-bl-lg pointer-events-none" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-primary/70 rounded-br-lg pointer-events-none" />
             </div>
           </div>
         </div>
