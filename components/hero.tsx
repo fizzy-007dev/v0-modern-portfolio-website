@@ -1,15 +1,29 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useState } from "react"
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail, Upload, User } from "lucide-react"
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [profileImage, setProfileImage] = useState<string | null>(null)
 
   useEffect(() => {
     setIsLoaded(true)
   }, [])
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -128,15 +142,42 @@ const Hero = () => {
                 />
               </div>
 
-              {/* Inner animated gradient sphere - CHANGE: continuous smooth floating with glow */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-70">
+              {/* Replaced inner gradient sphere with an interactive profile circle and upload button */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div
-                  className="w-48 h-48 bg-gradient-to-br from-cyan-400 via-blue-500 to-pink-500 rounded-full blur-xl shadow-2xl"
+                  className="w-48 h-48 rounded-full flex items-center justify-center relative pointer-events-auto"
                   style={{
                     animation: "float-smooth 6s ease-in-out infinite",
-                    boxShadow: "0 0 60px rgba(0, 217, 255, 0.5), 0 0 40px rgba(255, 0, 110, 0.3)",
                   }}
-                />
+                >
+                  {/* Neon Circle Outline */}
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-primary/50"
+                    style={{
+                      boxShadow: "0 0 30px rgba(0, 217, 255, 0.4), inset 0 0 15px rgba(0, 217, 255, 0.2)",
+                    }}
+                  />
+
+                  {/* Image/Placeholder Container */}
+                  <div className="w-44 h-44 rounded-full overflow-hidden bg-secondary/30 backdrop-blur-md flex items-center justify-center group/profile border border-white/10">
+                    {profileImage ? (
+                      <img
+                        src={profileImage || "/placeholder.svg"}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-20 h-20 text-foreground/20 group-hover/profile:text-primary/50 transition-colors" />
+                    )}
+
+                    {/* Upload Overlay */}
+                    <label className="absolute inset-0 bg-black/60 opacity-0 group-hover/profile:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer">
+                      <Upload className="w-8 h-8 text-white mb-2" />
+                      <span className="text-xs text-white font-medium">Upload Photo</span>
+                      <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+                    </label>
+                  </div>
+                </div>
               </div>
 
               {/* Floating particles - CHANGE: smoother orbital motion */}
